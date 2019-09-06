@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react'
 import Blog from './components/Blog'
 import Notification from './components/Notification'
 import SuccessNotification from './components/SuccessNotification'
+import Togglable from './components/Togglable'
+import BlogForm from './components/BlogForm'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 import './App.css'
@@ -72,41 +74,6 @@ const App = () => {
       <Blog key={blog.id} blog={blog} /> 
     )
   )
-
-  const blogForm = () => (
-    <form onSubmit={addBlog}>
-      <h2>create new</h2>
-      <div>
-        title:
-        <input
-          type="text"
-          value={title}
-          name="title"
-          onChange={({ target }) => setTitle(target.value)}
-        />
-      </div>
-      <div>
-        author:      
-        <input
-          type="text"
-          value={author}
-          name="author"
-          onChange={({ target }) => setAuthor(target.value)}
-        />
-      </div>
-      <div>
-        url:
-        <input
-          type="text"
-          value={url}
-          name="url"
-          onChange={({ target }) => setUrl(target.value)}
-        />
-      </div>
-      <button type="submit">create</button>
-    </form>  
-  )
-  
 
   const handleLogin = async (event) => {
     event.preventDefault()
@@ -181,7 +148,18 @@ const App = () => {
         <div>
           <h2>blogs</h2>
             <div>{user.name} logged in {logout()}</div>
-              {blogForm()}
+              <Togglable buttonLabel="new note">
+                <BlogForm
+                  handleSubmit={addBlog}
+                  title={title}
+                  author={author}
+                  url={url}
+                  handleTitleChange={({ target }) => setTitle(target.value)}
+                  handleAuthorChange={({ target }) => setAuthor(target.value)}
+                  handleUrlChange={({ target }) => setUrl(target.value)}
+                />
+              </Togglable>
+              {/* {blogForm()} */}
               {blogList()}
         </div> 
       }
