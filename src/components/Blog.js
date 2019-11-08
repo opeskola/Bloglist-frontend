@@ -19,14 +19,14 @@ const Blog = ({ blog }) => {
         {blogInfo === false ?
           <div>{blog.title} {blog.author}</div> :
           <div>
-            <div>{blog.title} {blog.author}</div> 
+            <div>{blog.title} {blog.author}</div>
             <div>{blog.url}</div>
-            <div>{blog.likes} likes 
+            <div>{blog.likes} likes
               <button>like</button>
             </div>
             <div>added by {blog.user.name}</div>
           </div>
-        }     
+        }
       </div>
     </div>
   )
