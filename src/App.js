@@ -18,6 +18,7 @@ const App = () => {
   const [successMessage, setSuccessMessage] = useState(null)
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+
   const [user, setUser] = useState(null)
 
   useEffect(() => {
@@ -36,6 +37,7 @@ const App = () => {
       blogService.setToken(user.token)
     }
   }, [])
+
 
   const loginForm = () => (
     <form onSubmit={handleLogin}>
@@ -61,6 +63,7 @@ const App = () => {
       <button type="submit">login</button>
     </form>
   )
+
 
   const logout = () => (
     <form onSubmit={handleLogout}>
@@ -91,11 +94,14 @@ const App = () => {
         username, password,
       })
 
+      console.log(user)
+
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
       )
       blogService.setToken(user.token)
       setUser(user)
+      console.log('here we are')
       setUsername('')
       setPassword('')
     } catch (exception) {
